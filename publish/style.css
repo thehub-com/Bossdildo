@@ -1,0 +1,224 @@
+/* =========================
+   RESET
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  background: #0b0b0b;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* =========================
+   COLORS
+========================= */
+:root {
+  --bg: #0b0b0b;
+  --bg-soft: #121212;
+  --orange: #ff9800;
+  --orange-soft: #ffb74d;
+  --white: #ffffff;
+  --gray: #9e9e9e;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  height: 56px;
+  background: linear-gradient(180deg, #0f0f0f, #0b0b0b);
+  border-bottom: 1px solid rgba(255,152,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+header h2 {
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: var(--orange);
+  animation: glow 3s infinite;
+}
+
+@keyframes glow {
+  0%   { text-shadow: 0 0 4px rgba(255,152,0,.4); }
+  50%  { text-shadow: 0 0 12px rgba(255,152,0,.8); }
+  100% { text-shadow: 0 0 4px rgba(255,152,0,.4); }
+}
+
+/* =========================
+   CHAT AREA
+========================= */
+#chat {
+  position: fixed;
+  top: 56px;
+  bottom: 72px;
+  left: 0;
+  right: 0;
+  padding: 14px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* scrollbar */
+#chat::-webkit-scrollbar {
+  width: 4px;
+}
+#chat::-webkit-scrollbar-thumb {
+  background: rgba(255,152,0,0.4);
+  border-radius: 4px;
+}
+
+/* =========================
+   MESSAGE BUBBLES
+========================= */
+#chat div {
+  margin-bottom: 12px;
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  line-height: 1.4;
+  animation: fadeUp .25s ease;
+  word-wrap: break-word;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* user */
+#chat div b:contains("Ты") {}
+#chat div:has(b) {
+  background: linear-gradient(135deg, #1c1c1c, #141414);
+  border: 1px solid rgba(255,255,255,0.05);
+  margin-left: auto;
+}
+
+/* assistant */
+#chat div:has(b):nth-child(even) {
+  background: linear-gradient(135deg, #1b1306, #120d04);
+  border: 1px solid rgba(255,152,0,0.3);
+  margin-right: auto;
+}
+
+#chat b {
+  color: var(--orange);
+}
+
+/* =========================
+   INPUT BAR
+========================= */
+.input {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: linear-gradient(180deg, #0b0b0b, #0f0f0f);
+  border-top: 1px solid rgba(255,152,0,0.3);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.input input {
+  flex: 1;
+  height: 48px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  background: var(--bg-soft);
+  color: var(--white);
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+.input input::placeholder {
+  color: var(--gray);
+}
+
+.input button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--orange), var(--orange-soft));
+  color: #000;
+  font-size: 18px;
+  transition: transform .15s ease, box-shadow .15s ease;
+  box-shadow: 0 0 12px rgba(255,152,0,0.4);
+}
+
+.input button:active {
+  transform: scale(0.9);
+  box-shadow: 0 0 6px rgba(255,152,0,0.6);
+}
+
+/* =========================
+   OFFLINE MODE
+========================= */
+.offline {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #151515, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.clock {
+  font-size: 48px;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+
+.offline p {
+  color: var(--gray);
+  font-size: 14px;
+}
+
+/* =========================
+   MOBILE FIXES
+========================= */
+@media (max-width: 480px) {
+  #chat {
+    padding: 10px;
+  }
+
+  #chat div {
+    max-width: 92%;
+    font-size: 14px;
+  }
+
+  header h2 {
+    font-size: 16px;
+  }
+}
