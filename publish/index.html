@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ABS AI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <header>
-  <h2>ABS AI</h2>
+  <button id="menuBtn" class="icon">☰</button>
+  <div class="title">ABS AI</div>
+  <button id="newChatBtn" class="icon">＋</button>
 </header>
 
-<div id="chat"></div>
+<!-- SIDEBAR -->
+<aside id="sidebar" class="hidden">
+  <div class="sidebar-top">
+    <h3>Чаты</h3>
+    <button id="logoutBtn" class="small">Выйти</button>
+  </div>
+  <div id="chatsList"></div>
+</aside>
+<div id="overlay" class="hidden"></div>
 
-<div class="input">
-  <input id="prompt" placeholder="Спроси ABS AI..." />
-  <button id="send">➤</button>
+<!-- OFFLINE -->
+<div id="offline" class="offline hidden">
+  <div class="clock" id="clock">00:00</div>
+  <div class="offline-text">Жду подключения к интернету…</div>
 </div>
 
-<script src="app.js"></script>
+<!-- AUTH -->
+<div id="auth" class="auth">
+  <h1>ABS AI</h1>
+  <input id="email" type="email" placeholder="Email" autocomplete="email" />
+  <input id="password" type="password" placeholder="Пароль" autocomplete="current-password" />
+  <button id="login" class="btn primary">Войти</button>
+  <button id="register" class="btn">Зарегистрироваться</button>
+  <button id="google" class="btn google">Войти через Google</button>
+</div>
+
+<!-- CHAT -->
+<main id="app" class="hidden">
+  <div id="chat"></div>
+
+  <div class="input">
+    <input id="prompt" placeholder="Спроси ABS AI..." autocomplete="off" />
+    <button id="send">➤</button>
+  </div>
+</main>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="auth.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
