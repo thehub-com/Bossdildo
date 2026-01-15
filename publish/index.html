@@ -8,14 +8,15 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-  <button id="menuBtn" class="icon">☰</button>
+  <button id="menuBtn" class="icon" aria-label="menu">☰</button>
   <div class="title">ABS AI</div>
-  <button id="newChatBtn" class="icon">＋</button>
+  <button id="newChatBtn" class="icon" aria-label="new-chat">＋</button>
 </header>
 
 <!-- SIDEBAR -->
-<aside id="sidebar" class="hidden">
+<aside id="sidebar" class="hidden" aria-hidden="true">
   <div class="sidebar-top">
     <h3>Чаты</h3>
     <button id="logoutBtn" class="small">Выйти</button>
@@ -24,34 +25,32 @@
 </aside>
 <div id="overlay" class="hidden"></div>
 
-<!-- OFFLINE -->
-<div id="offline" class="offline hidden">
-  <div class="clock" id="clock">00:00</div>
-  <div class="offline-text">Жду подключения к интернету…</div>
-</div>
-
-<!-- AUTH -->
-<div id="auth" class="auth">
+<!-- AUTH (visible when not signed in) -->
+<div id="auth" class="auth" role="region" aria-label="auth">
   <h1>ABS AI</h1>
+
   <input id="email" type="email" placeholder="Email" autocomplete="email" />
   <input id="password" type="password" placeholder="Пароль" autocomplete="current-password" />
+
   <button id="login" class="btn primary">Войти</button>
   <button id="register" class="btn">Зарегистрироваться</button>
   <button id="google" class="btn google">Войти через Google</button>
 </div>
 
-<!-- CHAT -->
-<main id="app" class="hidden">
+<!-- CHAT APP (visible when signed in) -->
+<main id="app" class="hidden" role="main" aria-label="chat">
   <div id="chat"></div>
 
   <div class="input">
     <input id="prompt" placeholder="Спроси ABS AI..." autocomplete="off" />
-    <button id="send">➤</button>
+    <button id="send" aria-label="send">➤</button>
   </div>
 </main>
 
+<!-- SCRIPTS (modules) -->
 <script type="module" src="firebase.js"></script>
 <script type="module" src="auth.js"></script>
 <script type="module" src="app.js"></script>
+
 </body>
 </html>
